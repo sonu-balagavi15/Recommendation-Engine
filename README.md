@@ -1,99 +1,49 @@
 # Recommendation Engine with Monitoring
 
+A machine learning-based recommendation system that generates personalized recommendations for existing users and popularity-based recommendations for new users using a cold-start strategy.
+
+The project includes model training, evaluation, monitoring, drift detection, and a Flask REST API for serving recommendations.
+
 ## Project Overview
 
-This project is a machine learning based recommendation engine that generates personalized item recommendations for users.
+The system analyzes user-item interactions and uses collaborative filtering with Truncated SVD to generate personalized recommendations.
 
-The system also handles the cold-start problem for new users and includes monitoring features to detect changes in user activity, item activity, rating distribution, and rating drift.
+For new users without interaction history, the system uses a popularity-based cold-start recommendation strategy.
 
 ## Features
 
-- Synthetic user-item interaction dataset
-- Exploratory Data Analysis
+- Synthetic recommendation dataset generation
+- Exploratory Data Analysis (EDA)
 - User-item interaction matrix
-- Matrix factorization using Truncated SVD
+- Collaborative filtering using Truncated SVD
 - Personalized recommendations
-- Cold-start recommendations
-- Model evaluation
-- Recommendation API using Flask
-- System monitoring
-- Rating drift detection
+- Cold-start recommendations for new users
+- RMSE evaluation
+- Precision@10 evaluation
+- Recall@10 evaluation
 - User and item activity monitoring
+- Rating distribution monitoring
+- Basic data drift detection
+- Flask REST API
+- Git and GitHub version control
 
-## Technologies Used
-
-- Python
-- Pandas
-- NumPy
-- Scikit-learn
-- Matplotlib
-- Seaborn
-- Joblib
-- Flask
-- Jupyter Notebook
-
-## Dataset
-
-The dataset contains:
-
-- 1,000 unique users
-- 500 unique items
-- 29,101 user-item interactions
-- Ratings from 1 to 5
-- Timestamp information
-
-## Recommendation Approach
-
-The recommendation engine uses matrix factorization with Truncated SVD.
-
-The user-item interaction matrix is transformed into a lower-dimensional representation.
-
-The model then reconstructs the matrix to estimate ratings for items that users have not interacted with.
-
-The highest-ranked unseen items are returned as personalized recommendations.
-
-## Cold-Start Handling
-
-For new users who are not present in the training dataset, the system uses a popularity-based recommendation strategy.
-
-Items are ranked using:
-
-- Average rating
-- Number of ratings
-- Global average rating
-
-This allows the system to provide recommendations even when there is no previous interaction history for the user.
-
-## Model Evaluation
-
-The system evaluates recommendation quality using:
-
-- RMSE
-- Precision@10
-- Recall@10
-
-## Monitoring
-
-The monitoring system tracks:
-
-- Total interactions
-- Number of users
-- Number of items
-- Average rating
-- Rating distribution
-- Average user activity
-- Average item activity
-- Inactive users
-- Low-activity items
-- Rating drift
-
-The current dataset contains no significant rating drift.
-
-## API
-
-The recommendation engine provides a Flask REST API.
-
-### Personalized Recommendation
+## System Architecture
 
 ```text
-/recommend?user_id=103
+                    User Request
+                         |
+                         v
+                  Flask REST API
+                         |
+                +--------+--------+
+                |                 |
+          Existing User       New User
+                |                 |
+                v                 v
+       SVD Personalized     Cold-Start
+       Recommendations      Strategy
+                |                 |
+                +--------+--------+
+                         |
+                         v
+                Recommended Items
