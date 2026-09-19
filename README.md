@@ -1,84 +1,76 @@
-# 🚀 Recommendation Engine with Monitoring
+# Recommendation Engine with Monitoring
 
-A machine learning-based recommendation engine built using **Python, Collaborative Filtering, Truncated SVD, Scikit-learn, and Flask**.
-
-The system provides personalized recommendations for existing users, handles new users using a cold-start strategy, evaluates recommendation performance, monitors user/item activity and rating drift, and exposes the recommendation system through a live REST API deployed on Render.
+A machine learning-based recommendation system that provides personalized item recommendations for existing users and popularity-based recommendations for new users. The project also includes model evaluation, monitoring, data drift detection, and a Flask REST API for serving recommendations.
 
 ---
 
-## 🌐 Live Demo
+## 🚀 Live Demo
 
-### Live API
-
+**Live API:**  
 https://recommendation-engine-h5gc.onrender.com
 
-### API Home
-
-https://recommendation-engine-h5gc.onrender.com/
-
-### Personalized Recommendation
-
-https://recommendation-engine-h5gc.onrender.com/recommend?user_id=103
-
-### Cold-Start Recommendation
-
-https://recommendation-engine-h5gc.onrender.com/recommend?user_id=99999
-
----
-
-## 📂 GitHub Repository
-
+**GitHub Repository:**  
 https://github.com/sonu-balagavi15/Recommendation-Engine
 
 ---
 
-# 📌 Project Overview
+## 📌 Project Overview
 
-Recommendation systems are widely used by e-commerce platforms, streaming services, social media platforms, and content platforms to recommend relevant products or content to users.
+Recommendation systems are widely used by platforms such as e-commerce websites, streaming services, social media platforms, and online learning platforms to suggest relevant content or products to users.
 
-This project implements an end-to-end machine learning recommendation engine using user-item interaction data.
+This project implements a complete recommendation pipeline using collaborative filtering and dimensionality reduction with **Truncated SVD**.
 
-The system learns patterns from historical interactions and generates Top-N recommendations.
+The system supports two major recommendation scenarios:
 
-It also includes:
+1. **Personalized Recommendations**
+   - Used when a user already has interaction history.
+   - The system learns user-item relationships.
+   - Previously interacted items are excluded.
+   - New items are ranked based on predicted scores.
 
-- Personalized recommendations
-- Collaborative filtering
-- Truncated SVD
-- Cold-start handling
+2. **Cold-Start Recommendations**
+   - Used when a new user has no interaction history.
+   - The system uses popularity and weighted average ratings.
+   - This allows the recommendation service to provide useful results even for new users.
+
+The project also includes:
+
+- Data exploration
+- Machine learning model training
 - Model evaluation
-- Data monitoring
-- Rating drift detection
-- Flask REST API
-- Cloud deployment
+- Recommendation generation
+- Cold-start handling
+- Monitoring
+- Data drift detection
+- REST API
 - GitHub version control
+- Cloud deployment using Render
 
 ---
 
-# 🎯 Project Objectives
+# 🎯 Objectives
 
 The main objectives of this project are:
 
-1. Generate and analyze user-item interaction data.
-2. Build a recommendation system using machine learning.
-3. Create a user-item interaction matrix.
-4. Apply Truncated SVD for dimensionality reduction.
-5. Generate personalized recommendations.
-6. Handle new users using a cold-start strategy.
-7. Evaluate recommendation performance.
-8. Monitor user and item activity.
-9. Detect changes in rating behavior.
-10. Expose recommendations through a REST API.
-11. Deploy the API to the cloud.
-12. Provide a complete end-to-end ML project workflow.
+- Build a machine learning recommendation engine.
+- Analyze user-item interaction data.
+- Implement collaborative filtering.
+- Use Truncated SVD for dimensionality reduction.
+- Generate personalized recommendations.
+- Handle new users using a cold-start strategy.
+- Evaluate recommendation performance.
+- Monitor recommendation data.
+- Detect changes in data distribution.
+- Expose the recommendation system through a REST API.
+- Deploy the application to the cloud.
 
 ---
 
 # 📊 Dataset
 
-A synthetic user-item interaction dataset was generated for this project.
+The project uses a generated interaction dataset for demonstrating the recommendation pipeline.
 
-## Dataset Statistics
+### Dataset Statistics
 
 | Feature | Value |
 |---|---:|
@@ -88,73 +80,16 @@ A synthetic user-item interaction dataset was generated for this project.
 | Rating Scale | 1–5 |
 | Average Rating | 3.61 |
 
-## Dataset Columns
+### Dataset Columns
 
 | Column | Description |
 |---|---|
 | `user_id` | Unique identifier of the user |
 | `item_id` | Unique identifier of the item |
 | `rating` | User rating for an item |
-| `timestamp` | Interaction timestamp |
+| `timestamp` | Time of the interaction |
 
----
-
-# 🔍 Data Exploration
-
-The dataset was analyzed to understand its structure and quality.
-
-The exploration includes:
-
-- Dataset shape
-- Column information
-- Missing values
-- Unique users
-- Unique items
-- User activity
-- Item activity
-- Rating distribution
-- Average rating
-
-## Data Quality Results
-
-| Metric | Result |
-|---|---:|
-| Missing Values | 0 |
-| Unique Users | 1,000 |
-| Unique Items | 500 |
-| Average Interactions/User | 29.10 |
-| Minimum Interactions/User | 10 |
-| Maximum Interactions/User | 45 |
-| Average Interactions/Item | 58.20 |
-| Minimum Interactions/Item | 34 |
-| Maximum Interactions/Item | 81 |
-| Average Rating | 3.614 |
-
----
-
-# 🧠 Machine Learning Approach
-
-The recommendation system uses **Collaborative Filtering**.
-
-The basic idea is to learn relationships between users and items from historical interactions.
-
-## Machine Learning Workflow
+Dataset file:
 
 ```text
-User-Item Interaction Data
-          ↓
-Data Exploration
-          ↓
-Train/Test Split
-          ↓
-User-Item Matrix
-          ↓
-Truncated SVD
-          ↓
-Latent Representations
-          ↓
-Predicted Ratings
-          ↓
-Recommendation Ranking
-          ↓
-Top-N Recommendations
+data/interactions.csv
